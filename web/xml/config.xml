@@ -1,0 +1,7 @@
+<config>
+<!-- 
+	change this according to your webserver's directory structure!
+ --> 
+ <samples><![CDATA[/flashmidi/web/sound/LK_Piano.sf2]]></samples>
+
+</config>

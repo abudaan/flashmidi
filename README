@@ -1,0 +1,8 @@
+To test the app without having to change any settings: add a folder named 'flashmidi' to your webroot and copy the complete web folder into it.
+
+Then the app have the following url:
+
+http://localhost/flashmidi/web
+
+Replace localhost by the name of your server.
+

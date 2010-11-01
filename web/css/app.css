@@ -1,0 +1,100 @@
+.button {
+	font-family: _sans;
+	font-size: 13px;
+	color: #0000bb;
+	text-align: left;
+	text-decoration: underline;
+}
+
+.button_over {
+	font-family: _sans;
+	font-size: 13px;
+	color: #00aff0;
+	text-align: left;
+	text-decoration: underline;
+}
+
+.label {
+	font-family: _sans;
+	font-size: 13px;
+	color: #333333;
+	text-align: left;
+}
+
+.log{
+	font-family: Courier,_sans;
+	font-size: 10px;
+	color: #ffffff;
+	text-align: left;
+}
+
+.prefix {
+	font-family: Courier,_sans;
+	font-size: 10px;
+	color: #54ff54;
+	text-align: left;
+}
+
+
+.popup {
+	font-family: _sans;
+	font-size: 13px;
+	color: #222222;
+	text-align: left;
+}
+
+.popup_button {
+	font-family: _sans;
+	font-size: 14px;
+	color: #0000ff;
+	text-align: left;
+}
+
+.popup_button_over {
+	font-family: _sans;
+	font-size: 14px;
+	color: #19B7F1;
+	text-align: left;
+}
+
+.button_red {
+	font-family: _sans;
+	font-size: 14px;
+	color: #ff0000;
+	text-align: left;
+}
+
+.button_red_over {
+	font-family: _sans;
+	font-size: 14px;
+	color: #555555;
+	text-align: left;
+}
+
+.button_green {
+	font-family: _sans;
+	font-size: 14px;
+	color: #00ff00;
+	text-align: left;
+}
+
+.button_green_over {
+	font-family: _sans;
+	font-size: 14px;
+	color: #555555;
+	text-align: left;
+}
+
+.button_blue {
+	font-family: _sans;
+	font-size: 14px;
+	color: #0000ff;
+	text-align: left;
+}
+
+.button_blue_over {
+	font-family: _sans;
+	font-size: 14px;
+	color: #555555;
+	text-align: left;
+}
