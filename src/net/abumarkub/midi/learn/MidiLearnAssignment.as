@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, abumarkub <abudaan at gmail.com>
+ * Copyright (c) 2010, abumarkub <abudaan at gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,33 +24,65 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+package net.abumarkub.midi.learn 
 {
 
 	/**
 	 * @author abudaan
 	 */
-	public class LiveConnectionData 
+	public class MidiLearnAssignment 
 	{
-		private var _command:String;
-		private var _params:String;
+		private var _id:String;
+		private var _description:String;
+		private var _controller:int;
+		private var _data1:int;
+		private var _closure:Function;
 		
-		public function LiveConnectionData(command:String,params:String)
+		public function MidiLearnAssignment(description:String,closure:Function,controller:int=-1)
 		{
-			_command = command;
-			_params = params;
+			_closure 		= closure;
+			_description	= description;
+			_controller		= controller;
+		}
+
+		public function set controller(value:int):void
+		{
+			_controller 	= value;
+		}
+
+		public function set data1(value:int):void
+		{
+			_data1	= value;
 		}
 		
-		public function get command():String
+		public function set id(value:String):void
 		{
-			return _command;
+			_id	= value;
 		}
 		
-		public function get params():String
+		public function get controller():int
 		{
-			return _params;
+			return _controller;
 		}
+		
+		public function get data1():int
+		{
+			return _data1;
+		}
+		
+		public function get id():String
+		{
+			return _id;
+		}	
+		
+		public function get description():String
+		{
+			return _description;
+		}	
+		
+		public function get closure():Function
+		{
+			return _closure;
+		}	
 	}
 }

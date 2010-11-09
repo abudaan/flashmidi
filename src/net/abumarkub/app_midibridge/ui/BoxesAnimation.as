@@ -24,33 +24,77 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+package net.abumarkub.app_midibridge.ui 
 {
+	import caurina.transitions.Tweener;
+
+	import net.abumarkub.midi.MidiCommand;
+	import net.abumarkub.midi.MidiData;
+	import flash.display.Sprite;
 
 	/**
 	 * @author abudaan
 	 */
-	public class LiveConnectionData 
+	public class BoxesAnimation extends Sprite 
 	{
-		private var _command:String;
-		private var _params:String;
-		
-		public function LiveConnectionData(command:String,params:String)
+		private var _height:Number;
+		private var _boxes:Array = new Array();
+
+		public function BoxesAnimation(w:Number,h:Number)
 		{
-			_command = command;
-			_params = params;
+			_height					= -h;
+			
+			var box:Box;
+			var size:Number			= w/88;
+			var posX:Number 		= size/2;
+			var posY:Number 		= 0;
+			var margin:uint 		= 0;
+
+			for(var i:uint = 0; i < 88; i++)
+			{
+				box 				= new Box(0x0000ff,1,size,size);
+				box.x 				= posX;
+				box.y 				= posY;
+				box.alpha			= 0;
+				posX   			   += box.width + margin;
+				addChild(box);
+				_boxes.push(box);
+			}
+		}
+
+		public function update(md:MidiData):void
+		{
+			if(md.command != MidiCommand.NOTE_ON && md.command != MidiCommand.NOTE_OFF)
+			{
+				return;
+			}
+			var no:uint 	= md.noteNumber - 21;
+			if(_boxes[no] == null)
+			{
+				return;
+			}
+			
+			if(md.velocity == 0 || md.command == MidiCommand.NOTE_OFF)
+			{
+				calculateColor(no);
+				Tweener.addTween(_boxes[no],{time:1,y:0,transition:"easeInQuad",onUpdate:calculateColor,onUpdateParams:[no],onComplete:boxAnimDone,onCompleteParams:[no]});					
+			}
+			else
+			{
+				Tweener.removeTweens(_boxes[no]);
+				_boxes[no].y	=  (md.velocity/127) * (_height);
+				calculateColor(no);
+			}
 		}
 		
-		public function get command():String
+		private function calculateColor(index:uint):void
 		{
-			return _command;
+			_boxes[index].calculateColor(_boxes[index].y/(_height));
 		}
-		
-		public function get params():String
+
+		private function boxAnimDone(index:uint):void
 		{
-			return _params;
+			_boxes[index].calculateColor(0);
 		}
 	}
 }

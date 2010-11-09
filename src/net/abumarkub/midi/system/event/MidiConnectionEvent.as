@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, abumarkub <abudaan at gmail.com>
+ * Copyright (c) 2010, abumarkub <abudaan at gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,33 +24,43 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+ 
+ package net.abumarkub.midi.system.event
 {
+	import flash.events.Event;
+	
+	public class MidiConnectionEvent extends Event
+	{	
+		//incoming events from applet or service
+		public static const MIDI_CONNECTION_STARTED:String		= "midi-connection-started";
+		public static const MIDI_CONNECTION_STOPPED:String		= "midi-connection-stopped";
+		public static const MIDI_IN_CHANGED:String				= "midi-in";
+		public static const MIDI_OUT_CHANGED:String				= "midi-out";
+		public static const MIDI_DATA_RECEIVED:String			= "midi-data";
+		public static const CONFIG:String						= "config";
+		public static const ERROR:String						= "error";
+		public static const WARNING:String						= "warning";
+		public static const MESSAGE:String						= "message";
+		
+		//outgoing command, used to update the log of the MidiConfigUI whenever an instruction is send to the applet or the service
+		public static const COMMAND_SENT:String					= "command-sent";
 
-	/**
-	 * @author abudaan
-	 */
-	public class LiveConnectionData 
-	{
-		private var _command:String;
-		private var _params:String;
+		private var _message:String;
 		
-		public function LiveConnectionData(command:String,params:String)
+		public function MidiConnectionEvent(type:String, message:String = "", bubbles:Boolean=true, cancelable:Boolean=false)
 		{
-			_command = command;
-			_params = params;
+			_message = message;
+			super(type, bubbles, cancelable);
+		}
+
+		public override function clone():Event
+		{
+			return new MidiConnectionEvent(type,_message);
 		}
 		
-		public function get command():String
+		public function get message():String
 		{
-			return _command;
-		}
-		
-		public function get params():String
-		{
-			return _params;
-		}
+			return _message;
+		}		  
 	}
 }

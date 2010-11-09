@@ -48,16 +48,25 @@ package net.abumarkub.synth
 		private var _clib:Object;
 		private var _sound:Sound = null;
 		private var _channel:SoundChannel;
-		private var _ready:Boolean;
+		private var _id:uint;
+		private var _description:String = "Fluidsynth (internal)";
+		private var _initialized:Boolean;
+		private var _url:String;
 
-		public function Fluidsynth(url:String)
-		{
+		public function Fluidsynth(url:String = "")
+		{			
+			_url  = url == "" || url == null ? "LK_Piano.sf2" : url;
+
 			_cLibInit 		= new CLibInit;
-			_urlStream 		= new URLStream();
 			_sf2FileData 	= new ByteArray();
+		}
+		
+		public function init():void
+		{
+			_urlStream 		= new URLStream();
 			_urlStream.addEventListener(Event.COMPLETE, completeHandler);
-			_urlStream.load(new URLRequest(url));
-//			_urlStream.load(new URLRequest("./example.sf2"));
+			_urlStream.load(new URLRequest(_url));
+//			_urlStream.load(new URLRequest("./example.sf2"));			
 		}
 
 		private function completeHandler(event:Event):void
@@ -70,8 +79,8 @@ package net.abumarkub.synth
 			 */
 			_cLibInit.supplyFile("./example.sf2", _sf2FileData);
 			_clib.fluidsynth_init(0,0);
-			_ready = true;
-			dispatchEvent(new Event(SAMPLES_LOADED));
+			_initialized = true;
+			dispatchEvent(new SynthEvent(SynthEvent.INITIALIZED));
 		}
 		
 		public function handleMidiEvent(event:MidiEvent):void
@@ -148,9 +157,24 @@ package net.abumarkub.synth
 			_sound = null;
 		}
 		
-		public function get ready():Boolean
+		public function get initialized():Boolean
 		{
-			return _ready;
-		}	
+			return _initialized;
+		}
+		
+		public function set id(value:uint):void
+		{
+			_id = value; 
+		}
+		
+		public function get id():uint
+		{
+			return _id;
+		}
+		
+		public function get description():String
+		{
+			return _description;
+		}					
 	}
 }

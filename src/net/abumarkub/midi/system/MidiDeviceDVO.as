@@ -24,33 +24,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+package net.abumarkub.midi.system 
 {
 
 	/**
 	 * @author abudaan
+	 * 
+	 * A simple Data Value Object class to store midi device data
+	 * 
 	 */
-	public class LiveConnectionData 
+	public class MidiDeviceDVO 
 	{
-		private var _command:String;
-		private var _params:String;
+		public var id:int;
+		public var index:int;
+		public var name:String;
+		public var available:Boolean;
 		
-		public function LiveConnectionData(command:String,params:String)
+		public function MidiDeviceDVO(index:int=0,id:int=-1,available:String="",name:String="")
 		{
-			_command = command;
-			_params = params;
+			this.id 		= id;
+			this.name 		= name;
+			this.index 		= index;
+			this.available 	= available == "true";
 		}
-		
-		public function get command():String
+
+		public function toString():String
 		{
-			return _command;
-		}
-		
-		public function get params():String
-		{
-			return _params;
+			return "[id:" + id + ", index:" + index + ", name:" + name + ", available:" + available +"]";
 		}
 	}
 }

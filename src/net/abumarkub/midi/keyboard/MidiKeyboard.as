@@ -29,7 +29,6 @@ package net.abumarkub.midi.keyboard
 	import net.abumarkub.midi.MidiCommand;
 	import net.abumarkub.midi.MidiData;
 	import net.abumarkub.midi.MidiEvent;
-	import net.abumarkub.midi.harmony.Note;
 
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -48,7 +47,7 @@ package net.abumarkub.midi.keyboard
 		private var _keys:Dictionary;
 		private var _keyPadding:Number = 1;
 		
-		public function MidiKeyboard(startNote:uint,endNote:uint)
+		public function MidiKeyboard(startNote:uint=21,endNote:uint=108)
 		{
 			_startNote 		= startNote;	
 			_endNote 		= endNote;	
@@ -130,6 +129,10 @@ package net.abumarkub.midi.keyboard
 
 		public function handleMidiData(data:MidiData):void
 		{
+			/**
+			 * check the command against values in MidiCommand because the command is sent as an int
+			 * and MidiEvent stores commands verbose as a String!
+			 */
 			if(data.command != MidiCommand.NOTE_ON && data.command != MidiCommand.NOTE_OFF)
 			{
 				return;

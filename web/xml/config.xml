@@ -1,7 +1,15 @@
 <config>
 <!-- 
+<samples><![CDATA[/p2/flashmidi/web/sound/VintageDreamsWaves-v2.sf2]]></samples>
+<samples><![CDATA[/p2/flashmidi/web/sound/WST25FStein_00Sep22.sf2]]></samples>
+<samples><![CDATA[/flashmidi/sound/WST25FStein_00Sep22.sf2]]></samples>
+<samples><![CDATA[/flashmidi/sound/VintageDreamsWaves-v2.sf2]]></samples>
+<samples><![CDATA[/flashmidi/sound/LK_Piano.sf2]]></samples>
+ -->
+
+<!-- 
 	change this according to your webserver's directory structure!
  --> 
- <samples><![CDATA[/flashmidi/web/sound/LK_Piano.sf2]]></samples>
+ <samples><![CDATA[/p2/flashmidi/web/sound/LK_Piano.sf2]]></samples>
 
 </config>

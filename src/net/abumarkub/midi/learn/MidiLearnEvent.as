@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, abumarkub <abudaan at gmail.com>
+ * Copyright (c) 2010, abumarkub <abudaan at gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,33 +24,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+package net.abumarkub.midi.learn 
 {
 
 	/**
 	 * @author abudaan
 	 */
-	public class LiveConnectionData 
+	public class MidiLearnEvent 
 	{
-		private var _command:String;
-		private var _params:String;
-		
-		public function LiveConnectionData(command:String,params:String)
-		{
-			_command = command;
-			_params = params;
-		}
-		
-		public function get command():String
-		{
-			return _command;
-		}
-		
-		public function get params():String
-		{
-			return _params;
-		}
+		public static const ASSIGN_CONTROLLER:String 		= "CONTROLLER_ASSIGNED";
+		public static const REMOVE_CONTROLLER:String 		= "REMOVE_CONTROLLER";
+		public static const SHOW_MIDI_LEARN_POPUP:String 	= "SHOW_MIDI_LEARN_POPUP";
 	}
 }

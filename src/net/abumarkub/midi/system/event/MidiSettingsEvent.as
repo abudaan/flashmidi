@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, abumarkub <abudaan at gmail.com>
+ * Copyright (c) 2010, abumarkub <abudaan at gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,33 +24,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+ 
+ package net.abumarkub.midi.system.event
 {
-
-	/**
-	 * @author abudaan
-	 */
-	public class LiveConnectionData 
+	import flash.events.Event;
+	
+	public class MidiSettingsEvent extends Event
 	{
-		private var _command:String;
-		private var _params:String;
-		
-		public function LiveConnectionData(command:String,params:String)
+		public static const COULD_NOT_READ_CONFIG_FILE:String 	= "handleConfigFileReadError";
+		public static const COULD_NOT_WRITE_CONFIG_FILE:String 	= "handleConfigFileWriteError";
+		public static const CONFIG_FILE_WRITTEN:String 			= "handleConfigFileWritten";
+		public static const CONFIG_FILE_READ:String 			= "handleConfigFileRead";
+
+		public function MidiSettingsEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
 		{
-			_command = command;
-			_params = params;
+			super(type, bubbles, cancelable);
 		}
-		
-		public function get command():String
+
+		public override function clone():Event
 		{
-			return _command;
-		}
-		
-		public function get params():String
-		{
-			return _params;
-		}
+			return new MidiSettingsEvent(type);
+		}  
 	}
 }

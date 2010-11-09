@@ -3,29 +3,28 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
 <head>
-	<title>New MidiBridge</title>
+	<title>bi-directional midibridge with fluidsynth</title>
 	<script type="text/javascript" src="js/swfobject.js"></script>
-	<script type="text/javascript" src="js/midibridge.js"></script>
-</head>	
+	<script type="text/javascript" src="js/flash-applet-bridge.js"></script>
+</head>
 <body style="margin:0;padding:0;">
-	
+
 	<style type="text/css">
-		<!-- make it look nice and neat! -->
 	</style>
 
 	<div id="content">
 		<div id="flash">
 		</div>
 	</div>
-	
+
 	<div id="java">
 	</div>
 
 	<div id="javamessages">
 	</div>
-	
+
 	<script language="javascript">
-		
+
 		minJavaVer 				= "1.5";
 		minFlashVer 			= "10.0.12";
 		promptForJava			= true;
@@ -33,9 +32,9 @@
 		serverPath				= "flashmidi";//change this according to your webserver's directory structure
 		javaDivId 				= "java";
 		javaMsgDivId 			= "javamessages";
-		
-		preloaderUrl 			= "";	
-		flashUrl 				= "swf/app.swf";
+
+		preloaderUrl 			= "";
+		flashUrl 				  = "swf/app.swf";
 		flashDivId 				= "flash";
 		flashWidth				= "700";
 		flashHeight				= "500";
@@ -53,13 +52,13 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 </script>
 <script type="text/javascript">
 <!--
- try 
+ try
  {
   var pageTracker = _gat._getTracker("UA-5081547-4");
   pageTracker._trackPageview();
- } 
+ }
  catch(err){}
 -->
-</script>	
+</script>
 </body>
 </html>

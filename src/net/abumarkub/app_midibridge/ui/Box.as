@@ -24,33 +24,57 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-
-package net.abumarkub.core.liveconnection 
+package net.abumarkub.app_midibridge.ui 
 {
-
+	import flash.display.Sprite;
+	
 	/**
 	 * @author abudaan
 	 */
-	public class LiveConnectionData 
+	public class Box extends Sprite 
 	{
-		private var _command:String;
-		private var _params:String;
+		private var _color:Number;
+		private var _alpha:Number;
+		private var _red:Number;
+		private var _green:Number;
+		private var _blue:Number;
+		private var _width:Number;
+		private var _height:Number;
 		
-		public function LiveConnectionData(command:String,params:String)
+		public function Box(color:Number,alpha:Number,w:Number,h:Number)
 		{
-			_command = command;
-			_params = params;
+			_color 		= color;
+			_red 		= _color >> 16 & 0xFF;
+			_green 		= _color >> 8 & 0xFF;
+			_blue		= _color & 0xFF;	
+			
+			_alpha 		= alpha;
+			_width 		= w;
+			_height		= h;
+			
+			draw();
 		}
 		
-		public function get command():String
+		private function draw():void
 		{
-			return _command;
+			graphics.lineStyle(.5,0xffffff);
+			graphics.drawRect(-(_width/2),-(_height/2),_width,_height);
+			
+			graphics.beginFill(_color,_alpha);
+			graphics.drawRect(-(_width/2),-(_height/2),_width,_height);
+			graphics.endFill();	
 		}
 		
-		public function get params():String
+		public function calculateColor(perc:Number):void
 		{
-			return _params;
+			alpha		= perc;
+			return;
+			
+			_red 		= perc * 255;
+			_blue		= (1-perc) * 255;	
+			
+			_color 	= _red << 16 | _green << 8 | _blue;	
+			draw();	
 		}
 	}
 }

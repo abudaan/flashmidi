@@ -1,8 +1,70 @@
-To test the app without having to change any settings: add a folder named 'flashmidi' to your webroot and copy the complete web folder into it.
+The term 'midibridge' includes all Java and Actionscript classes, and all Javascript, HTML and XML files that make it possible to receive midi events sent from your computer's midi system in a Flash app.
 
-Then the app have the following url:
+This repository contains both the web and the Air version of the Actionscript classes of the midibridge.
+
+The Java classes can be found in the Java repository at https://github.com/abudaan/javamidi
+
+The Actionscript classes are located in the /src folder.
+
+In the folder /src/net/abumarkub/app_midibridge you can find 4 main classes; 2 for web apps and 2 for Air apps. The SimpleSampleApp classes are a good starting point for your own midi enabled classes.
+
+To compile the main classes you need to add all swc files in the /lib folder except Button.swc to your classpath. Button.swc is only needed for SimpleSampleAppAir.
+
+I strongly recommend to compile the web versions to the folder /web/swf and the Air versions to the folder /bin. This way all paths to helper files are set correctly.
+
+In the bin folder you'll find the helper files:
+
+- app.css needed for AppAir.as
+- config.xml needed for AppAir.as, in this file the url to the Soundfont file is specified
+- midi.cf this is where the default midi in and midi out devices gets stored
+- midiservice.jar is the commandline program that gets started by the NativeProcess
+- App-app.xml and SimpleSampleApp-app are the application descriptor files
+- LK_Piano.sf2 and VintageDreamsWaves-v2.sf2 are sample soundfont files that you can use in FluidSynth
+
+
+Comparable helper files are also available for the web version:
+
+- app.css is located in /web/css/
+- config.xml is located in /web/xml
+- the midiapplet jar is in /web/java
+- the soundfont files are in /web/sound
+
+
+If you want to test the web version add a folder named 'flashmidi' to your webroot and copy the complete web folder into it.
+
+Then you can run the app from the following url:
 
 http://localhost/flashmidi/web
 
 Replace localhost by the name of your server.
+
+
+If you want to test the Air version you can simply cd into the folder /bin and type this on your commandline:
+
+adl App-app.xml
+
+or 
+
+adl SimpleSampleApp-app.xml
+
+Make sure adl is added to your path!
+
+
+
+The Air version of the app starts a NativeProcess so if you want to distribute your app please read the documentation at:
+
+http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/desktop/NativeProcess.html
+
+and
+
+http://help.adobe.com/en_US/air/build/WS789ea67d3e73a8b22388411123785d839c-8000.html
+
+
+A very common pitfall is forgetting to set the supportedProfiles argument in the application descriptor file properly; an Air app that wants to communicate with native processes has to have the argument set to "extendedDesktop desktop".
+
+In the supplied application descriptor files this argument has already been set correctly.
+
+
+
+
 
