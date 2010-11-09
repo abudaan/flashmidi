@@ -117,8 +117,8 @@ package net.abumarkub.midi.system.air
 				}
 				else
 				{
-					_startupInfo.executable 	= new File("/usr/bin/java/");
-					args[0]						= "java -jar";
+					_startupInfo.executable 	= new File("/usr/bin/java");
+					args[0]						= "-jar";
 					args[1]						= File.applicationDirectory.nativePath + "/midiservice.jar";
 				}
 				_startupInfo.arguments		= args;					
