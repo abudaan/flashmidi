@@ -71,72 +71,72 @@ package net.abumarkub.core.ui.button
 			
 			if(b)
 			{
-				_skin.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
-				_skin.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-				_skin.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-				_skin.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-				_skin.addEventListener(MouseEvent.ROLL_OUT, onRollOut);
-				_skin.addEventListener(MouseEvent.ROLL_OVER, onRollOver);
+				_skin.addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
+				_skin.addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
+				_skin.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+				_skin.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+				_skin.addEventListener(MouseEvent.ROLL_OUT, rollOut);
+				_skin.addEventListener(MouseEvent.ROLL_OVER, rollOver);
 				return;
 			}
-			_skin.removeEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
-			_skin.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-			_skin.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-			_skin.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-			_skin.removeEventListener(MouseEvent.ROLL_OUT, onRollOut);
-			_skin.removeEventListener(MouseEvent.ROLL_OVER, onRollOver);
+			_skin.removeEventListener(MouseEvent.MOUSE_OVER, mouseOver);
+			_skin.removeEventListener(MouseEvent.MOUSE_OUT, mouseOut);
+			_skin.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+			_skin.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+			_skin.removeEventListener(MouseEvent.ROLL_OUT, rollOut);
+			_skin.removeEventListener(MouseEvent.ROLL_OVER, rollOver);
 		}
 		
-		protected function onMouseOver(e:MouseEvent):void
+		protected function mouseOver(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.OVER,new Point(e.stageX,e.stageY)));
 			handleOver(e);
 		}
 
-		protected function onMouseOut(e:MouseEvent):void
+		protected function mouseOut(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.OUT,new Point(e.stageX,e.stageY)));
 			handleOut(e);			
 		}
 
-		public function onMouseDown(e:MouseEvent):void
+		public function mouseDown(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.DOWN,new Point(e.stageX,e.stageY)));
 			handleDown(e);						
 		}
 
-		public function onMouseUp(e:MouseEvent):void
+		public function mouseUp(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.UP,new Point(e.stageX,e.stageY)));
 			handleUp(e);									
 		}
 
-		protected function onDoubleClick(e:MouseEvent):void
+		protected function doubleClick(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.DOUBLECLICK, new Point(e.stageX,e.stageY)));
 			handleDoubleClick();
 		}
 		
-		protected function onClick(e:MouseEvent):void
+		protected function click(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.CLICK, new Point(e.stageX,e.stageY)));
 			handleClick();
 		}
 		
-		protected function onRollOver(e:MouseEvent):void
+		protected function rollOver(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.ROLLOVER, new Point(e.stageX,e.stageY)));
 			handleRollOver();
 		}
 
-		protected function onRollOut(e:MouseEvent):void
+		protected function rollOut(e:MouseEvent):void
 		{
 			e.stopImmediatePropagation();
 			dispatchEvent(new ButtonEvent(ButtonEvent.ROLLOUT, new Point(e.stageX,e.stageY)));
