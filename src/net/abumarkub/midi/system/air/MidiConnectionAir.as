@@ -27,9 +27,9 @@
 
 package net.abumarkub.midi.system.air
 {
-	import net.abumarkub.midi.system.MidiConfig;
 	import net.abumarkub.midi.MidiData;
 	import net.abumarkub.midi.system.IMidiConnection;
+	import net.abumarkub.midi.system.MidiConfig;
 	import net.abumarkub.midi.system.MidiConnection;
 	import net.abumarkub.midi.system.event.MidiConnectionEvent;
 
@@ -273,7 +273,12 @@ package net.abumarkub.midi.system.air
 		public function getMidiConfig():void
 		{
 			//trace(_midiService,_midiService.running);
-			if(_midiService == null || !_midiService.running)
+			if(_midiService == null)
+			{
+				return;
+			}
+			
+			if(!_midiService.running)
 			{
 				startService();	
 			}
@@ -284,7 +289,7 @@ package net.abumarkub.midi.system.air
 		{
 			reset();
 			
-			if(!_midiService.running)
+			if(_midiService == null || !_midiService.running)
 			{
 				return;
 			}
@@ -309,7 +314,7 @@ package net.abumarkub.midi.system.air
 			_keepAliveTimer.stop();
 			reset();
 
-			if(!_midiService.running)
+			if(_midiService == null || !_midiService.running)
 			{
 				return;
 			}

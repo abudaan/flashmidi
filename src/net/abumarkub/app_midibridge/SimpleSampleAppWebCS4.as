@@ -8,7 +8,7 @@ package net.abumarkub.app_midibridge
 	import net.abumarkub.midi.system.MidiConfigUI;
 	import net.abumarkub.midi.system.MidiSystem;
 	import net.abumarkub.midi.system.web.MidiSystemWeb;
-	import net.abumarkub.synth.Fluidsynth;
+//	import net.abumarkub.synth.Fluidsynth;
 
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -62,6 +62,9 @@ package net.abumarkub.app_midibridge
 	 * @see Fluidsynth
 	 * @see ISynth 
 	 * 
+	 *  
+	 *  NOTE: FluidSynth does *not* work in CS4 !!!
+	 *  
 	 * 
 	 * In this example i have also added an instance of MidiKeyboard; this is a virtual keyboard that generates midi events in actionscript.
 	 * In actionscript midi events are instances of MidiEvent. Each MidiEvent instance contains an instance of MidiData where the actual 
@@ -75,16 +78,15 @@ package net.abumarkub.app_midibridge
 	 * 
 	 * 
 	 */
-	[SWF(backgroundColor="#ffffff", frameRate="100")] 
 	 
-	public class SimpleSampleAppWeb extends Sprite
+	public class SimpleSampleAppWebCS4 extends Sprite
 	{
 		private var _midiConfigBtn:Button;
 		private var _midiConfigUI:MidiConfigUI;
 		private var _midiSystem:IMidiSystem;
 		private var _midiKeyboard:MidiKeyboard;
 		
-		public function SimpleSampleAppWeb()
+		public function SimpleSampleAppWebCS4()
 		{
 			_midiConfigBtn 			= new Button();
 			_midiConfigBtn.label 	= "open midi config";
@@ -97,7 +99,8 @@ package net.abumarkub.app_midibridge
 			addChild(_midiConfigUI);
 						
 			_midiSystem 			= MidiSystemWeb.getInstance(_midiConfigUI);
-			_midiSystem.addSynth(new Fluidsynth("sound/LK_Piano.sf2"));
+			//FluidSynth does *not* work in CS4 !!!
+			//_midiSystem.addSynth(new Fluidsynth("sound/LK_Piano.sf2"));
 
 			_midiSystem.addEventListener(MidiEvent.NOTE_ON, handleMidiData);
 			_midiSystem.addEventListener(MidiEvent.NOTE_OFF, handleMidiData);

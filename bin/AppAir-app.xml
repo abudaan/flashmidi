@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/2.0"
+	minimumPatchLevel="0">
+	<supportedProfiles>extendedDesktop desktop</supportedProfiles>
+	<!--
+		AIR Application Descriptor File. See
+		http://www.adobe.com/go/learn_air_1.0_application_descriptor_en.
+	-->
+	<id>App</id>
+	<name>AppAir</name>
+	<version>1.0</version>
+	<filename>AppAir</filename>
+	<description>
+		<text xml:lang="en">Example of flashmidi as Air project</text>
+		<text xml:lang="ja">これは Adobe AIR のサンプルアプリケーションです。</text>
+	</description>
+	<copyright>published opensource under new BSD license</copyright>
+	<initialWindow>
+		<content>AppAir.swf</content>
+		<title>flash midi</title>
+		<systemChrome>standard</systemChrome>
+		<transparent>false</transparent>
+		<visible>true</visible>
+		<minimizable>true</minimizable>
+		<maximizable>true</maximizable>
+		<resizable>true</resizable>
+		<width>700</width>
+		<height>500</height>
+		<x>150</x>
+		<y>150</y>
+		<minSize>350 250</minSize>
+		<maxSize>1400 1000</maxSize>
+	</initialWindow>
+	<installFolder>abumarkub/flashmidi</installFolder>
+	<programMenuFolder>abumarkub/flashmidi</programMenuFolder>
+
+	<customUpdateUI>false</customUpdateUI>
+	<allowBrowserInvocation>false</allowBrowserInvocation>
+	<fileTypes>
+		<fileType>
+			<name>com.example</name>
+			<extension>xmpl</extension>
+			<description>Example file</description>
+			<contentType>example/x-data-type</contentType>
+		</fileType>
+	</fileTypes>
+</application>

@@ -3,38 +3,39 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
 <head>
-	<title>bi-directional midibridge with fluidsynth</title>
-	<script type="text/javascript" src="js/swfobject.js"></script>
-	<script type="text/javascript" src="js/flash-applet-bridge.js"></script>
+<title>bi-directional midibridge with fluidsynth</title>
+<script type="text/javascript" src="js/swfobject.js"></script>
+<script type="text/javascript" src="js/flash-applet-bridge.js"></script>
 </head>
-<body style="margin:0;padding:0;">
+<body style="margin: 0; padding: 0;">
 
-	<style type="text/css">
-	</style>
+<style type="text/css">
+</style>
 
-	<div id="content">
-		<div id="flash">
-		</div>
-	</div>
+<div id="content">
+<div id="flash"></div>
+</div>
 
-	<div id="java">
-	</div>
+<div id="java"></div>
 
-	<div id="javamessages">
-	</div>
+<div id="javamessages"></div>
 
-	<script language="javascript">
-
+<script language="javascript">
+		
 		minJavaVer 				= "1.5";
 		minFlashVer 			= "10.0.12";
 		promptForJava			= true;
 
-		serverPath				= "flashmidi";//change this according to your webserver's directory structure
+		serverPath				= "web";//change this according to your webserver's directory structure
 		javaDivId 				= "java";
 		javaMsgDivId 			= "javamessages";
-
+		
 		preloaderUrl 			= "";
-		flashUrl 				  = "swf/app.swf";
+		/*
+		 * Please uncomment the appropriate flashUrl below:
+		 */	
+		//flashUrl 				= "swf/AppWeb.swf";
+		flashUrl 				= "swf/SimpleSampleAppWeb.swf";
 		flashDivId 				= "flash";
 		flashWidth				= "700";
 		flashHeight				= "500";
@@ -47,16 +48,18 @@
 
 	</script>
 <script type="text/javascript">
+<!--
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+-->
 </script>
 <script type="text/javascript">
 <!--
- try
+ try 
  {
   var pageTracker = _gat._getTracker("UA-5081547-4");
   pageTracker._trackPageview();
- }
+ } 
  catch(err){}
 -->
 </script>

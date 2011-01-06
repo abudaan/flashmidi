@@ -7,8 +7,7 @@ package net.abumarkub.app_midibridge
 	import net.abumarkub.midi.system.IMidiSystem;
 	import net.abumarkub.midi.system.MidiConfigUI;
 	import net.abumarkub.midi.system.MidiSystem;
-	import net.abumarkub.midi.system.web.MidiSystemWeb;
-	import net.abumarkub.synth.Fluidsynth;
+	import net.abumarkub.midi.system.air.MidiSystemAir;
 
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -63,6 +62,9 @@ package net.abumarkub.app_midibridge
 	 * @see ISynth 
 	 * 
 	 * 
+	 *  NOTE: FluidSynth does *not* work in CS4 !!!
+	 *  
+	 *   
 	 * In this example i have also added an instance of MidiKeyboard; this is a virtual keyboard that generates midi events in actionscript.
 	 * In actionscript midi events are instances of MidiEvent. Each MidiEvent instance contains an instance of MidiData where the actual 
 	 * midi data is stored (command, status, channel, data1, data2).
@@ -75,30 +77,30 @@ package net.abumarkub.app_midibridge
 	 * 
 	 * 
 	 */
-	[SWF(backgroundColor="#ffffff", frameRate="100")] 
-	 
-	public class SimpleSampleAppWeb extends Sprite
+	[SWF(backgroundColor="#ffffff", frameRate="100")]
+
+	public class SimpleSampleAppAirCS4 extends Sprite
 	{
 		private var _midiConfigBtn:Button;
-		private var _midiConfigUI:MidiConfigUI;
 		private var _midiSystem:IMidiSystem;
 		private var _midiKeyboard:MidiKeyboard;
+		private var _midiConfigUI:MidiConfigUI;
 		
-		public function SimpleSampleAppWeb()
+		public function SimpleSampleAppAirCS4()
 		{
 			_midiConfigBtn 			= new Button();
 			_midiConfigBtn.label 	= "open midi config";
 			_midiConfigBtn.y		= 4;
 			_midiConfigBtn.addEventListener(MouseEvent.CLICK, handleEvent);
-			addChild(_midiConfigBtn);
-			
+			addChild(_midiConfigBtn);			
+
 			_midiConfigUI			= new MidiConfigUI();
 			_midiConfigUI.y			= 30;
 			addChild(_midiConfigUI);
 						
-			_midiSystem 			= MidiSystemWeb.getInstance(_midiConfigUI);
-			_midiSystem.addSynth(new Fluidsynth("sound/LK_Piano.sf2"));
-
+			_midiSystem 			= MidiSystemAir.getInstance(_midiConfigUI);
+			//FluidSynth does *not* work in CS4 !!!
+			//_midiSystem.addSynth(new Fluidsynth());
 			_midiSystem.addEventListener(MidiEvent.NOTE_ON, handleMidiData);
 			_midiSystem.addEventListener(MidiEvent.NOTE_OFF, handleMidiData);
 			_midiSystem.addEventListener(MidiEvent.PITCH_BEND, handleMidiData);

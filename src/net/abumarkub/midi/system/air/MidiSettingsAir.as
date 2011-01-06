@@ -29,7 +29,6 @@ package net.abumarkub.midi.system.air
 	import net.abumarkub.midi.system.IMidiSettings;
 	import net.abumarkub.midi.system.event.MidiSettingsEvent;
 
-	import flash.errors.IOError;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
@@ -77,7 +76,7 @@ package net.abumarkub.midi.system.air
 			dispatchEvent(new MidiSettingsEvent(MidiSettingsEvent.CONFIG_FILE_WRITTEN));			
 		}
 		
-		private function onFileReadError(event:IOError):void 
+		private function onFileReadError(event:IOErrorEvent):void 
 		{
 			event;
 			dispatchEvent(new MidiSettingsEvent(MidiSettingsEvent.COULD_NOT_READ_CONFIG_FILE));

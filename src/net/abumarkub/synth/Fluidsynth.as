@@ -1,5 +1,6 @@
 package net.abumarkub.synth
 {
+	import flash.events.IOErrorEvent;
 	import cmodule.fluidsynth_swc.CLibInit;
 
 	import net.abumarkub.midi.MidiCommand;
@@ -64,11 +65,17 @@ package net.abumarkub.synth
 		public function init():void
 		{
 			_urlStream 		= new URLStream();
+			_urlStream.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
 			_urlStream.addEventListener(Event.COMPLETE, completeHandler);
 			_urlStream.load(new URLRequest(_url));
 //			_urlStream.load(new URLRequest("./example.sf2"));			
 		}
 
+		private function errorHandler(event:IOErrorEvent):void
+		{
+			trace(event.text);
+		}
+		
 		private function completeHandler(event:Event):void
 		{
 			_urlStream.readBytes(_sf2FileData, 0, _urlStream.bytesAvailable);

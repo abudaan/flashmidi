@@ -1,24 +1,29 @@
-The term 'midibridge' includes all Java and Actionscript classes, and all Javascript, HTML and XML files that make it possible to receive midi events sent from your computer's midi system in a Flash app.
+#### INTRODUCTION ####
+
+The term 'midibridge' includes all Java and Actionscript classes, and all Javascript, HTML and XML files that make it possible to receive midi events sent from your computer's midi system in a Flash app. And vice versa to send midi events generated in Actionscript to your computer's midi system.
 
 This repository contains both the web and the Air version of the Actionscript classes of the midibridge.
 
-The Java classes can be found in the Java repository at https://github.com/abudaan/javamidi
+The Java classes can be found in the Java repository at https://github.com/abudaan/javamidi or as a zip download at http://code.google.com/p/miditoflash/downloads/
+
+
+#### PACKAGE CONTENTS ####
+
 
 The Actionscript classes are located in the /src folder.
 
-In the folder /src/net/abumarkub/app_midibridge you can find 4 main classes; 2 for web apps and 2 for Air apps. The SimpleSampleApp classes are a good starting point for your own midi enabled classes.
+In the folder /src/net/abumarkub/app_midibridge you can find 6 main classes; 3 for web apps and 3 for Air apps. The SimpleSampleApp classes are a good starting point for your own midi enabled classes.
 
-To compile the main classes you need to add all swc files in the /lib folder except Button.swc to your classpath. Button.swc is only needed for SimpleSampleAppAir.
+For CS4 and CS5 users there are 4 fla files in the /src folders available as well (see below for instructions).
 
-I strongly recommend to compile the web versions to the folder /web/swf and the Air versions to the folder /bin. This way all paths to helper files are set correctly.
 
-In the bin folder you'll find the helper files:
+In the bin folder you'll find the helper files for the Air version:
 
 - app.css needed for AppAir.as
 - config.xml needed for AppAir.as, in this file the url to the Soundfont file is specified
 - midi.cf this is where the default midi in and midi out devices gets stored
 - midiservice.jar is the commandline program that gets started by the NativeProcess
-- App-app.xml and SimpleSampleApp-app are the application descriptor files
+- AppAir-app.xml and SimpleSampleAppAir-app are the application descriptor files
 - LK_Piano.sf2 and VintageDreamsWaves-v2.sf2 are sample soundfont files that you can use in FluidSynth
 
 
@@ -30,25 +35,124 @@ Comparable helper files are also available for the web version:
 - the soundfont files are in /web/sound
 
 
-If you want to test the web version add a folder named 'flashmidi' to your webroot and copy the complete web folder into it.
+
+#### COMPILING WITH Flex SDK, Flashbuilder, FDT, IntelliJ, FlashDevelop etc. ####
+
+
+To compile the main classes you need to add the /src folder and all swc files in the /lib folder except Button.swc to your classpath. Button.swc is only needed for SimpleSampleAppAir.
+
+I strongly recommend to compile the web versions to the folder /web/swf and the Air versions to the folder /bin. This way all paths to helper files are set correctly.
+
+
+
+#### COMPILING (PUBLISHING) WITH CS4 or CS5 ####
+
+
+I have added 4 CS4/5 fla files that can serve as a starting point for setting up midi enabled projects in CS4/5. For the CS4 fla's i have supplied adapted versions of the main class files because in CS4 the FluidSynth is not supported. 
+
+- SimpleSampleAppWebCS4.fla 
+  -> main class file: /src/net/abumarkub/app_midibridge/SimpleSampleAppWebCS4.as
+  -> publish to /web/swf/SimpleSampleAppWeb.swf
+
+- SimpleSampleAppAirCS4.fla 
+  -> main class file: /src/net/abumarkub/app_midibridge/SimpleSampleAppAirCS4.as
+  -> descriptor file: /bin/SimpleSampleAppAir-app.xml
+  -> publish bin/SimpleSampleAppAir.swf
+
+- SimpleSampleAppWebCS5.fla 
+  -> main class file: /src/net/abumarkub/app_midibridge/SimpleSampleAppWeb.as
+  -> publish to /web/swf/SimpleSampleAppWeb.swf
+
+- SimpleSampleAppAirCS5.fla 
+  -> main class file: /src/net/abumarkub/app_midibridge/SimpleSampleAppAir.as
+  -> descriptor file: /bin/SimpleSampleAppAir-app.xml
+  -> publish bin/SimpleSampleAppAir.swf
+
+
+Both all paths to the necessary libraries, and the export paths are set correctly already, so you can just unzip the archive to your project folder and you should be able to publish the fla's right away.
+
+However if you're using CS5, you get this error when publishing the web version (SimpleSampleAppWebCS5.fla):
+
+Error #2032: Stream Error. URL: file:///C:/your_projectfolder/flashmidi/web/swf/sound/LK_Piano.sf2
+
+If you test your swf in a webbrowser than you can just ignore this error.
+
+Should you for whatever reason want to test your swf in the Flash IDE , you should change the path to the sample library in the constructor of the FluidSynth.
+
+To do this, please open the file SimpleSampleAppWeb.as (in the folder /src/net/abumarkub/app_midibridge) and change the line that says:
+
+_midiSystem.addSynth(new Fluidsynth("sound/LK_Piano.sf2")); 
+
+to
+
+_midiSystem.addSynth(new Fluidsynth("../sound/LK_Piano.sf2")); 
+
+Please read also: testing the webversion, see below.
+
+
+If you are using CS4 to compile the AIR version, please read this article on the Adobe website:
+
+http://www.adobe.com/support/documentation/en/air/2/releasenotes_developers.html#i
+
+
+
+#### TESTING THE WEB VERSION ####
+
+
+You can test the web version by using the provided index.html file in the /web folder in one of the 3 ways described below.
+
+The index.html prompts with a message warning you that you should have Java installed. This can be very annoying if you need to test a lot. Therefor you can set the Javascript variable 'promptForJava' to 'false' in the index.html (line 27). Now Flash will run immediately.
+
+
+There are 3 ways of testing the webversion:
+
+1) with midi disabled (you can still use the FluidSynth though)
+2) open the file /web/index.html directly in your browser (usually something like: File -> Open File)
+3) run the file /web/index.html on your local webserver
+
+If you choose option 1, you basically don't need to do anything. Only if you want to use FluidSynth you should change the path to the sample library in the constructor of the FluidSynth, see above.
+
+
+If you choose option 2, you may run into problems with the security settings of Flash. If so, you will need to add the file location of the generated swf to the trusted locations, please read:
+
+http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7c91.html
+
+
+If you choose option 3, you only have to add the 'flashmidi' folder to your webroot. 
 
 Then you can run the app from the following url:
 
 http://localhost/flashmidi/web
 
-Replace localhost by the name of your server.
+
+If you don't have a local webserver installed on your computer, you can install either WAMP, MAMP or LAMP which are all very easy to install:
+
+- WAMP for Windows: http://www.wampserver.com/en/
+- MAMP for OSX: http://www.mamp.info/en/index.html
+- LAMP for Linux: http://www.lamphowto.com/
 
 
-If you want to test the Air version you can simply cd into the folder /bin and type this on your commandline:
 
-adl App-app.xml
+#### TESTING THE AIR VERSION ####
+
+
+If you use CS4/5 to publish the Air version you, CS4/5 will do all the work for you and you can just hit F12 (or CTRL/CMD ENTER)
+
+Also FDT and Flashbuilder provide handy tools for testing Air projects, please consult the documentation of your IDE.
+
+You also test the Air version by opening a command prompt and cd into the folder /bin. Then type this on your commandline and hit return:
+
+adl AppAir-app.xml
 
 or 
 
-adl SimpleSampleApp-app.xml
+adl SimpleSampleAppAir-app.xml
 
 Make sure adl is added to your path!
 
+
+
+#### EXTRA REMARKS ABOUT THE AIR VERSION ####
 
 
 The Air version of the app starts a NativeProcess so if you want to distribute your app please read the documentation at:
@@ -63,6 +167,9 @@ http://help.adobe.com/en_US/air/build/WS789ea67d3e73a8b22388411123785d839c-8000.
 A very common pitfall is forgetting to set the supportedProfiles argument in the application descriptor file properly; an Air app that wants to communicate with native processes has to have the argument set to "extendedDesktop desktop".
 
 In the supplied application descriptor files this argument has already been set correctly.
+
+
+
 
 
 
