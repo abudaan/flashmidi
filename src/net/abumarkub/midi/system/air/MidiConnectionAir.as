@@ -110,10 +110,11 @@ package net.abumarkub.midi.system.air
 				var args:Vector.<String>	= new Vector.<String>();
 				if(Capabilities.os.indexOf("Windows") != -1)
 				{
-					_startupInfo.executable 	= new File("C:/Windows/System32/cmd.exe");
+					_startupInfo.executable 	= new File("C:\\Windows\\System32\\cmd.exe");
+					_startupInfo.workingDirectory = File.applicationDirectory;
 					args[0]						= "/C";
 					args[1]						= "java -jar";
-					args[2]						= File.applicationDirectory.nativePath + "/midiservice.jar";
+					args[2]						= "midiservice.jar";
 				}
 				else
 				{
