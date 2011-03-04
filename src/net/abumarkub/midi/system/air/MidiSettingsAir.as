@@ -52,7 +52,7 @@ package net.abumarkub.midi.system.air
 
 		public function MidiSettingsAir()
 		{
-			_configFile					= new File(File.applicationDirectory.nativePath + "/midi.cfg");
+			_configFile					= new File(File.applicationStorageDirectory.nativePath + "/midi.cfg");
 		}
 		
 		public function readConfig():void
